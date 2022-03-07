@@ -18,6 +18,7 @@
 		96AA500827D6187700C86343 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500727D6187700C86343 /* APIManager.swift */; };
 		96AA500A27D6188C00C86343 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500927D6188C00C86343 /* PersistenceManager.swift */; };
 		96AA500C27D6189400C86343 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500B27D6189400C86343 /* HapticsManager.swift */; };
+		96AA500E27D686B400C86343 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500D27D686B400C86343 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		96AA500727D6187700C86343 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		96AA500927D6188C00C86343 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		96AA500B27D6189400C86343 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		96AA500D27D686B400C86343 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				96AA4FF127D615A100C86343 /* Assets.xcassets */,
 				96AA4FE827D615A000C86343 /* AppDelegate.swift */,
 				96AA4FEA27D615A000C86343 /* SceneDelegate.swift */,
+				96AA500D27D686B400C86343 /* Extensions.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				96AA4FED27D615A000C86343 /* WatchListViewController.swift in Sources */,
 				96AA500227D6168300C86343 /* TopStoriesNewsViewController.swift in Sources */,
 				96AA500A27D6188C00C86343 /* PersistenceManager.swift in Sources */,
+				96AA500E27D686B400C86343 /* Extensions.swift in Sources */,
 				96AA4FE927D615A000C86343 /* AppDelegate.swift in Sources */,
 				96AA4FEB27D615A000C86343 /* SceneDelegate.swift in Sources */,
 				96AA500427D6169000C86343 /* SearchResultsViewController.swift in Sources */,
