@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		961165B927D72AB400AB9D4E /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961165B827D72AB400AB9D4E /* SearchResultTableViewCell.swift */; };
 		96AA4FE927D615A000C86343 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA4FE827D615A000C86343 /* AppDelegate.swift */; };
 		96AA4FEB27D615A000C86343 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA4FEA27D615A000C86343 /* SceneDelegate.swift */; };
 		96AA4FED27D615A000C86343 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA4FEC27D615A000C86343 /* WatchListViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		961165B827D72AB400AB9D4E /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		96AA4FE527D615A000C86343 /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96AA4FE827D615A000C86343 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96AA4FEA27D615A000C86343 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				96AA4FF327D615A100C86343 /* LaunchScreen.storyboard */,
+				961165B827D72AB400AB9D4E /* SearchResultTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96AA500C27D6189400C86343 /* HapticsManager.swift in Sources */,
+				961165B927D72AB400AB9D4E /* SearchResultTableViewCell.swift in Sources */,
 				96AA500627D6169F00C86343 /* StockDetailsViewController.swift in Sources */,
 				96AA4FED27D615A000C86343 /* WatchListViewController.swift in Sources */,
 				96AA500227D6168300C86343 /* TopStoriesNewsViewController.swift in Sources */,
