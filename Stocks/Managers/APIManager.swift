@@ -10,20 +10,33 @@ import Foundation
 final class APIManager {
     static let shared = APIManager()
     
+    private init() {}
+    
     private struct Constants {
-        static let apiKey = ""
-        static let sandboxApiKey = ""
-        static let baseUrl = ""
+        static let apiKey = "c8jj9baad3i97d61a180"
+        static let sandboxApiKey = "sandbox_c8jj9baad3i97d61a18g"
+        static let baseUrl = "https://finnhub.io/api/v1/"
     }
     
     
-    private init() {}
-    
     // MARK: - PUBLIC
     
-    // get stock info
+    public func search(
+        query:String,
+        completion: @escaping (Result<SearchResponse,Error>) -> Void
+    ) {
+        guard let safeQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        request(
+            url: url(
+                for: .search,
+                queryParams: ["q":safeQuery]),
+            expecting: SearchResponse.self,
+            completion: completion
+        )
+    }
     
-    // search stocks
     
     // MARK: - PRIVATE
     
@@ -39,8 +52,22 @@ final class APIManager {
     private func url(for endpoint: Endpoint,
                      queryParams:[String:String] = [:]
     ) -> URL? {
+        var urlString = Constants.baseUrl + endpoint.rawValue
         
-        return nil
+        var queryItems = [URLQueryItem]()
+        // Add any parameters
+        for (name,value) in queryParams {
+            queryItems.append(.init(name: name, value: value))
+        }
+        // Add token
+        queryItems.append(.init(name: "token", value: Constants.apiKey))
+        
+        // Convert query items to suffix string
+        urlString += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
+        
+        print("\n\(urlString)\n")
+        
+        return URL(string: urlString)
     }
     
     private func request<T:Codable>(
