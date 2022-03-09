@@ -7,6 +7,38 @@
 
 import UIKit
 
+// MARK: - UIIMAGEVIEW
+
+extension UIImageView {
+    func setImage(with url: URL?) {
+        guard let url = url else {
+            return
+        }
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            let task = URLSession.shared.dataTask(with: url) { data, _ , error in
+                guard let data = data, error == nil else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.image = UIImage(data: data)
+                }
+            }
+            task.resume()
+        }
+    }
+}
+
+
+ // MARK: - STRING
+
+extension String {
+    static func string(from timeInterval:TimeInterval) -> String {
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return DateFormatter.prettyDateFormatter.string(from: date)
+    }
+}
+
+
 // MARK: - DATEFORMATTER
 
 extension DateFormatter {
@@ -15,6 +47,13 @@ extension DateFormatter {
         formatter.dateFormat = "YYYY-MM-dd"
         return formatter
     }()
+    
+    static let prettyDateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+    
 }
 
 
