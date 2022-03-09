@@ -13,7 +13,7 @@
 		96AA4FED27D615A000C86343 /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA4FEC27D615A000C86343 /* WatchListViewController.swift */; };
 		96AA4FF227D615A100C86343 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96AA4FF127D615A100C86343 /* Assets.xcassets */; };
 		96AA4FF527D615A100C86343 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AA4FF327D615A100C86343 /* LaunchScreen.storyboard */; };
-		96AA500227D6168300C86343 /* TopStoriesNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500127D6168300C86343 /* TopStoriesNewsViewController.swift */; };
+		96AA500227D6168300C86343 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500127D6168300C86343 /* NewsViewController.swift */; };
 		96AA500427D6169000C86343 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500327D6169000C86343 /* SearchResultsViewController.swift */; };
 		96AA500627D6169F00C86343 /* StockDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500527D6169F00C86343 /* StockDetailsViewController.swift */; };
 		96AA500827D6187700C86343 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AA500727D6187700C86343 /* APIManager.swift */; };
@@ -36,7 +36,7 @@
 		96AA4FF127D615A100C86343 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96AA4FF427D615A100C86343 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96AA4FF627D615A100C86343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96AA500127D6168300C86343 /* TopStoriesNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesNewsViewController.swift; sourceTree = "<group>"; };
+		96AA500127D6168300C86343 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		96AA500327D6169000C86343 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		96AA500527D6169F00C86343 /* StockDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsViewController.swift; sourceTree = "<group>"; };
 		96AA500727D6187700C86343 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -64,7 +64,6 @@
 				5BE9027E142B9B6662F2ACDA /* Pods-Stocks.debug.xcconfig */,
 				78698F1C56F8DDF3C15415C6 /* Pods-Stocks.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -120,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				96AA4FEC27D615A000C86343 /* WatchListViewController.swift */,
-				96AA500127D6168300C86343 /* TopStoriesNewsViewController.swift */,
+				96AA500127D6168300C86343 /* NewsViewController.swift */,
 				96AA500327D6169000C86343 /* SearchResultsViewController.swift */,
 				96AA500527D6169F00C86343 /* StockDetailsViewController.swift */,
 			);
@@ -274,7 +273,7 @@
 				961165B927D72AB400AB9D4E /* SearchResultTableViewCell.swift in Sources */,
 				96AA500627D6169F00C86343 /* StockDetailsViewController.swift in Sources */,
 				96AA4FED27D615A000C86343 /* WatchListViewController.swift in Sources */,
-				96AA500227D6168300C86343 /* TopStoriesNewsViewController.swift in Sources */,
+				96AA500227D6168300C86343 /* NewsViewController.swift in Sources */,
 				96AA500A27D6188C00C86343 /* PersistenceManager.swift in Sources */,
 				96AA500E27D686B400C86343 /* Extensions.swift in Sources */,
 				96AA4FE927D615A000C86343 /* AppDelegate.swift in Sources */,
