@@ -88,11 +88,30 @@ class StockDetailsViewController: UIViewController {
     }
     
     private func fetchFinancialData() {
+        let group = DispatchGroup()
+        
         // Fetch candlesticks if needed
-        
+        if candleStickData.isEmpty {
+            group.enter()
+        }
         // Fetch financial metrics
+        group.enter()
+        APIManager.shared.financialMetrics(for: symbol) { [weak self] result in
+            defer {
+                group.leave()
+            }
+            switch result {
+            case .success(let response):
+                let metrics = response.metric
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
         
-        renderChart()
+        group.notify(queue: .main) { [weak self] in
+            self?.renderChart()
+        }
+       
     }
     
     private func fetchNews() {
@@ -110,7 +129,14 @@ class StockDetailsViewController: UIViewController {
     }
     
     private func renderChart() {
-        
+        // Chart ViewModel | FinancialMetricViewModel(s)
+        let headerView = StockDetailHeaderView(
+            frame: CGRect(x: 0,
+                          y: 0,
+                          width: view.width,
+                          height: (view.width*0.7)+100))
+        headerView.backgroundColor = .link
+        tableView.tableHeaderView = headerView
     }
     
 }
