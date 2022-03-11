@@ -93,7 +93,7 @@ class WatchListViewController: UIViewController {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         
         for (symbol, candleSticks) in watchlistMap {
-            let changePercentage = getChangePercentage(for: candleSticks)
+            let changePercentage = getChangePercentage(symbol: symbol, data: candleSticks)
             viewModels.append(
                 .init(symbol: symbol,
                       companyName: UserDefaults.standard.string(forKey: "symbol") ?? "Company",
@@ -103,12 +103,13 @@ class WatchListViewController: UIViewController {
                       chartViewModel: .init(
                         data: candleSticks.reversed().map { $0.close },
                         showLegend: false,
-                        showAxis: false)))
+                        showAxis: false,
+                        fillColor: changePercentage < 0 ? .systemRed : .systemGreen)))
         }
         self.viewModels = viewModels
     }
     
-    private func getChangePercentage(for data: [CandleStick]) ->  Double {
+    private func getChangePercentage(symbol:String,data: [CandleStick]) ->  Double {
         let latestDate = data[0].date
         guard let latestClose = data.first?.close,
               let priorClose = data.first(where: {
