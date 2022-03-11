@@ -94,6 +94,17 @@ class StockDetailsViewController: UIViewController {
         // Fetch candlesticks if needed
         if candleStickData.isEmpty {
             group.enter()
+            APIManager.shared.marketData(for: symbol) { [weak self] result in
+                defer {
+                    group.leave()
+                }
+                switch result {
+                case .success(let response):
+                    self?.candleStickData = response.candleSticks
+                case .failure(let error):
+                    debugPrint(error)
+                }
+            }
         }
         // Fetch financial metrics
         group.enter()
@@ -148,9 +159,9 @@ class StockDetailsViewController: UIViewController {
         }
         headerView.configure(
             chartViewModel: .init(
-                data: [],
-                showLegend: false,
-                showAxis: false),
+                data: candleStickData.reversed().map { $0.close },
+                showLegend: true,
+                showAxis: true),
             metricViewModels: viewModels)
         
         tableView.tableHeaderView = headerView

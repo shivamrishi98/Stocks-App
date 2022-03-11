@@ -25,7 +25,7 @@ class WatchListTableViewCell: UITableViewCell {
         let price: String // formatted
         let changeColor:UIColor // red or green
         let changePercentage:String // formatted
-         let chartViewModel: StockChartView.ViewModel
+        let chartViewModel: StockChartView.ViewModel
     }
     
     private let symbolLabel:UILabel = {
@@ -59,8 +59,8 @@ class WatchListTableViewCell: UITableViewCell {
     
     private let miniChartView:StockChartView = {
         let view = StockChartView()
-        view.backgroundColor = .link
         view.clipsToBounds = true
+        view.isUserInteractionEnabled = false
         return view
     }()
     
@@ -137,7 +137,7 @@ class WatchListTableViewCell: UITableViewCell {
         priceLabel.text = viewModel.price
         changeLabel.text = viewModel.changePercentage
         changeLabel.backgroundColor = viewModel.changeColor
-        // Configure chart
+        miniChartView.configure(with: viewModel.chartViewModel)
     }
     
 }
