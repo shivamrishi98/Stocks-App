@@ -96,7 +96,7 @@ class WatchListViewController: UIViewController {
             let changePercentage = getChangePercentage(symbol: symbol, data: candleSticks)
             viewModels.append(
                 .init(symbol: symbol,
-                      companyName: UserDefaults.standard.string(forKey: "symbol") ?? "Company",
+                      companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
                       price: getLatestClosingPrice(from: candleSticks),
                       changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
                       changePercentage: .percentage(from: changePercentage),
