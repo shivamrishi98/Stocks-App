@@ -17,7 +17,7 @@ final class PersistenceManager {
         static let watchListKey = "watchlist"
     }
     
-    private init() {}
+    private init() {print(self.watchlist)}
     
     // MARK: - PUBLIC
     
@@ -26,7 +26,12 @@ final class PersistenceManager {
             userDefaults.set(true, forKey: Constants.onboardedKey)
             setUpDefaults()
         }
+        
         return  userDefaults.stringArray(forKey: Constants.watchListKey) ?? []
+    }
+    
+    public func watchlistContains(symbol:String) -> Bool {
+        return watchlist.contains(symbol)
     }
     
     public func addToWatchlist(symbol: String, companyName:String) {
