@@ -29,6 +29,8 @@ class WatchListViewController: UIViewController {
         return tableView
     }()
     
+    private var observer: NSObjectProtocol?
+    
     // MARK: - LIFECYCLE
     
     override func viewDidLoad() {
@@ -39,6 +41,7 @@ class WatchListViewController: UIViewController {
         fetchWatchlistData()
         setUpFloatingPanel()
         setUpTitleView()
+        setUpObserver()
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,12 +51,22 @@ class WatchListViewController: UIViewController {
     
     // MARK: - PRIVATE
     
+    private func setUpObserver() {
+        observer = NotificationCenter.default.addObserver(forName: .didAddToWatchList,
+                                                          object: nil,
+                                                          queue: .main,
+                                                          using: { [weak self] _ in
+            self?.viewModels.removeAll()
+            self?.fetchWatchlistData()
+        })
+    }
+    
     private func fetchWatchlistData() {
         let symbols = PersistenceManager.shared.watchlist
         
         let group = DispatchGroup()
         
-        for symbol in symbols {
+        for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
             APIManager.shared.marketData(for: symbol) { [weak self] result in
                 defer {
@@ -224,6 +237,27 @@ extension WatchListViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return WatchListTableViewCell.preferredHeight
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            // Update Persistence
+            PersistenceManager.shared.removeFromWatchlist(symbol: viewModels[indexPath.row].symbol)
+            // Update viewModels
+            viewModels.remove(at: indexPath.row)
+            // Delete Row
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

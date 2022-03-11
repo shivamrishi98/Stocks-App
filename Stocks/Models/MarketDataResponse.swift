@@ -26,7 +26,7 @@ struct MarketDataResponse: Codable {
     
     var candleSticks: [CandleStick] {
         var result = [CandleStick]()
-        for index in 0..<open.count {
+        for index in 0..<(open.count) {
             result.append(.init(
                 date: Date(timeIntervalSince1970: timestamps[index]),
                 high: high[index],
