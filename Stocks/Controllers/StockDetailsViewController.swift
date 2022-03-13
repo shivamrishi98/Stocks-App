@@ -241,6 +241,9 @@ extension StockDetailsViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+       
+        HapticsManager.shared.vibrateForSelection()
+        
         guard let url = URL(string: stories[indexPath.row].url) else {
             return
         }
@@ -253,6 +256,9 @@ extension StockDetailsViewController:UITableViewDelegate,UITableViewDataSource {
 
 extension StockDetailsViewController:NewsHeaderViewDelegate {
     func newsHeaderViewDidTapAddButton(_ headerView: NewsHeaderView) {
+        
+        HapticsManager.shared.vibrate(for: .success)
+        
         headerView.button.isHidden = true
         PersistenceManager.shared.addToWatchlist(symbol: symbol, companyName: companyName)
         let alert = UIAlertController(
