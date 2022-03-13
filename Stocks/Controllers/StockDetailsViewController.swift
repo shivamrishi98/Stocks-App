@@ -8,17 +8,27 @@
 import UIKit
 import SafariServices
 
-class StockDetailsViewController: UIViewController {
+/// Controller to show stock details
+final class StockDetailsViewController: UIViewController {
 
     // MARK: - PROPERTIES
     
+    /// Stock symbol
     private let symbol:String
+    
+    /// Company name
     private let companyName:String
+    
+    /// Collection of data
     private var candleStickData:[CandleStick]
     
+    /// Collection of news stories
     private var stories: [NewsStory] = []
+    
+    /// Company metrics
     private var metrics: Metrics?
     
+    /// Primary view
     private let tableView:UITableView = {
         let tableView = UITableView()
         tableView.register(NewsStoryTableViewCell.self,
@@ -66,6 +76,7 @@ class StockDetailsViewController: UIViewController {
 
     // MARK: - PRIVATE
     
+    /// Sets up close button
     private func setUpCloseButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .close,
@@ -73,10 +84,12 @@ class StockDetailsViewController: UIViewController {
             action: #selector(didTapClose))
     }
     
+    /// Handle close button tap
     @objc private func didTapClose() {
         dismiss(animated: true, completion: nil)
     }
     
+    /// Sets up tableView
     private func setUpTableView() {
         view.addSubview(tableView)
         tableView.delegate = self
@@ -88,6 +101,7 @@ class StockDetailsViewController: UIViewController {
         )
     }
     
+    /// Fetch financial metrics
     private func fetchFinancialData() {
         let group = DispatchGroup()
         
@@ -127,6 +141,7 @@ class StockDetailsViewController: UIViewController {
        
     }
     
+    /// Fetch news for given type
     private func fetchNews() {
         APIManager.shared.news(for: .company(symbol: symbol)) { [weak self] result in
             switch result {
@@ -141,6 +156,7 @@ class StockDetailsViewController: UIViewController {
         }
     }
     
+    /// Render chart and metrics
     private func renderChart() {
         // Chart ViewModel | FinancialMetricViewModel(s)
         let headerView = StockDetailHeaderView(
@@ -169,6 +185,11 @@ class StockDetailsViewController: UIViewController {
         tableView.tableHeaderView = headerView
     }
     
+    /// Get change percentage
+    /// - Parameters:
+    ///   - symbol: Symbol of company
+    ///   - data: Collection of data
+    /// - Returns: Percent
     private func getChangePercentage(symbol:String,data: [CandleStick]) ->  Double {
         let latestDate = data[0].date
         guard let latestClose = data.first?.close,
@@ -182,6 +203,8 @@ class StockDetailsViewController: UIViewController {
     }
     
 }
+
+// MARK: - EXTENSION - TableView
 
 extension StockDetailsViewController:UITableViewDelegate,UITableViewDataSource {
 
@@ -226,9 +249,10 @@ extension StockDetailsViewController:UITableViewDelegate,UITableViewDataSource {
     }
 }
 
+// MARK: - EXTENSION - NewsHeaderViewDelegate
+
 extension StockDetailsViewController:NewsHeaderViewDelegate {
     func newsHeaderViewDidTapAddButton(_ headerView: NewsHeaderView) {
-        // Add to watchlist
         headerView.button.isHidden = true
         PersistenceManager.shared.addToWatchlist(symbol: symbol, companyName: companyName)
         let alert = UIAlertController(

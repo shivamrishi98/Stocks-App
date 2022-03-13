@@ -8,12 +8,14 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: UIViewController {
-    
+/// Controller to show news
+final class NewsViewController: UIViewController {
+    /// Type of news
     enum `Type` {
         case topStories
         case company(symbol: String)
         
+        /// Title for given type
         var title:String {
             switch self {
             case .topStories:
@@ -26,10 +28,13 @@ class NewsViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
+    /// Collection of models
     private var stories = [NewsStory]()
     
+    /// Instance of a type
     private let type: Type
     
+    /// Primary news view
     public let tableView:UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -42,6 +47,7 @@ class NewsViewController: UIViewController {
 
     // MARK: - INIT
     
+    /// Create VC with type
     init(type: Type) {
         self.type = type
         super.init(nibName: nil, bundle: nil)
@@ -66,12 +72,14 @@ class NewsViewController: UIViewController {
     
     // MARK: - PRIVATE
     
+    /// Sets up tableView
     private func setUpTableView() {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    /// Fetch news model
     private func fetchNews() {
         APIManager.shared.news(for: type) { [weak self] result in
             switch result {
@@ -86,12 +94,16 @@ class NewsViewController: UIViewController {
         }
     }
     
+    /// Open a story
+    /// - Parameter url: URL to open
     private func open(url: URL) {
         let vc = SFSafariViewController(url: url)
         present(vc, animated: true)
     }
     
 }
+
+// MARK: - EXTENSION - TableView
 
 extension NewsViewController:UITableViewDelegate,UITableViewDataSource {
     
@@ -135,6 +147,7 @@ extension NewsViewController:UITableViewDelegate,UITableViewDataSource {
         open(url: url)
     }
     
+    /// Present an alert to show an error occurred when opening story
     private func presentFailedToOpenAlert() {
         let alert = UIAlertController(title: "Unable to Open",
                                       message: "We were unable to open the article.",
