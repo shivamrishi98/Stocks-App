@@ -17,9 +17,9 @@ final class APIManager {
     
     /// Constants
     private struct Constants {
-        static let apiKey = "c8jj9baad3i97d61a180"
-        static let sandboxApiKey = "sandbox_c8jj9baad3i97d61a18g"
-        static let baseUrl = "https://finnhub.io/api/v1/"
+        static let apiKey = kAPI_KEY
+        static let sandboxApiKey = kSANDBOX_API_KEY
+        static let baseUrl = kBASE_URL
         static let day:TimeInterval = 3600*24
     }
     
